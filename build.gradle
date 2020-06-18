@@ -1,6 +1,6 @@
 plugins {
-    id "net.ltgt.apt-eclipse" version "0.21"
-    id "com.github.johnrengelman.shadow" version "5.0.0"
+    id "com.diffplug.eclipse.apt" version "3.22.0"
+    id "com.github.johnrengelman.shadow" version "6.0.0"
     id "nu.studer.jooq" version "4.2"
     id "application"
 }
@@ -52,20 +52,39 @@ dependencies {
 
 test.classpath += configurations.developmentOnly
 
-mainClassName = "example.Application"
+mainClassName = "example.jooq.Application"
 
 // use JUnit 5 platform
 test {
     useJUnitPlatform()
 }
 
-tasks.withType(JavaCompile){
+tasks.withType(JavaCompile) {
     options.encoding = "UTF-8"
-    options.compilerArgs.add('-parameters')
+    options.compilerArgs.addAll([
+        '-parameters',
+        // enables incremental compilation
+        '-Amicronaut.processing.incremental=true',
+        '-Amicronaut.processing.annotations=example.jooq.*',
+        "-Amicronaut.processing.group=$project.group",
+        "-Amicronaut.processing.module=$project.name",
+    ])
 }
 
 shadowJar {
     mergeServiceFiles()
+}
+
+tasks.withType(JavaExec) {
+    classpath += configurations.developmentOnly
+    jvmArgs('-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
+    if (gradle.startParameter.continuous) {
+        systemProperties(
+            'micronaut.io.watch.restart': 'true',
+            'micronaut.io.watch.enabled': 'true',
+            "micronaut.io.watch.paths": "src/main"
+        )
+    }
 }
 
 jooq {
@@ -83,11 +102,8 @@ jooq {
                 inputSchema = 'PUBLIC'
             }
             target {
-                packageName = "example.domain"
+                packageName = "example.jooq.domain"
             }
         }
     }
 }
-
-run.classpath += configurations.developmentOnly
-run.jvmArgs('-noverify', '-XX:TieredStopAtLevel=1', '-Dcom.sun.management.jmxremote')
