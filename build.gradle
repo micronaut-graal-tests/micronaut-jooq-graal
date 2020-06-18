@@ -104,6 +104,9 @@ jooq {
             target {
                 packageName = "example.jooq.domain"
             }
+            generate {
+                jpaAnnotations = true
+            }
         }
     }
 }

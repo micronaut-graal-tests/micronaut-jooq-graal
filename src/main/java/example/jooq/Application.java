@@ -3,7 +3,6 @@ package example.jooq;
 import example.jooq.domain.tables.records.OwnerRecord;
 import example.jooq.domain.tables.records.PetRecord;
 import io.micronaut.context.event.StartupEvent;
-import io.micronaut.core.annotation.TypeHint;
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.runtime.event.annotation.EventListener;
 import org.jooq.DSLContext;
@@ -16,10 +15,6 @@ import static example.jooq.domain.Tables.OWNER;
 import static example.jooq.domain.Tables.PET;
 
 @Singleton
-@TypeHint(
-        value = {PetRecord.class, OwnerRecord.class},
-        accessType = TypeHint.AccessType.ALL_DECLARED_CONSTRUCTORS
-)
 public class Application {
 
     private static final Logger LOG = LoggerFactory.getLogger(Application.class);
