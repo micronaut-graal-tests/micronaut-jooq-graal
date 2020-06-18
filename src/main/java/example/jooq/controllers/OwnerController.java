@@ -1,7 +1,6 @@
 package example.jooq.controllers;
 
 import example.jooq.domain.Owner;
-import example.jooq.domain.OwnerWithPets;
 import example.jooq.repositories.OwnerRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
@@ -26,7 +25,7 @@ class OwnerController {
     }
 
     @Get("/{name}")
-    Optional<OwnerWithPets> byName(@NotBlank String name) throws SQLException {
+    Optional<Owner> byName(@NotBlank String name) throws SQLException {
         return ownerRepository.findByName(name);
     }
 }

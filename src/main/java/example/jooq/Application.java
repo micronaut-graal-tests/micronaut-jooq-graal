@@ -1,5 +1,6 @@
 package example.jooq;
 
+import example.jooq.domain.Pet;
 import example.jooq.domain.tables.records.OwnerRecord;
 import example.jooq.domain.tables.records.PetRecord;
 import io.micronaut.context.event.StartupEvent;
@@ -48,16 +49,19 @@ public class Application {
         PetRecord dino = context.newRecord(PET);
         dino.setName("Dino");
         dino.setOwnerId(fred.getId());
+        dino.setType(Pet.PetType.DOG.name());
         dino.store();
 
         PetRecord babyPuss = context.newRecord(PET);
         babyPuss.setName("Baby Puss");
         babyPuss.setOwnerId(fred.getId());
+        babyPuss.setType(Pet.PetType.CAT.name());
         babyPuss.store();
 
         PetRecord hoppy = context.newRecord(PET);
         hoppy.setName("Hoppy");
         hoppy.setOwnerId(barney.getId());
+        hoppy.setType(Pet.PetType.DOG.name());
         hoppy.store();
     }
 }

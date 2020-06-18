@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static example.jooq.domain.Tables.OWNER;
 import static example.jooq.domain.tables.Pet.PET;
@@ -42,12 +41,6 @@ public class PetRepository {
                 .where(PET.NAME.eq(name))
                 .fetchResultSet();
 
-        List<PetWithOwner> list = mapper.stream(rs).collect(Collectors.toList());
-
-        if (list.isEmpty()) {
-            return Optional.empty();
-        } else {
-            return Optional.of(list.get(0));
-        }
+        return mapper.stream(rs).findFirst();
     }
 }
