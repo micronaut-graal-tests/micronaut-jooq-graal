@@ -1,8 +1,8 @@
-package example.controllers;
+package example.jooq.controllers;
 
-import example.domain.Owner;
-import example.domain.OwnerWithPets;
-import example.repositories.OwnerRepository;
+import example.jooq.domain.Owner;
+import example.jooq.domain.OwnerWithPets;
+import example.jooq.repositories.OwnerRepository;
 import io.micronaut.http.annotation.Controller;
 import io.micronaut.http.annotation.Get;
 

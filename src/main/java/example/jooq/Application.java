@@ -1,15 +1,26 @@
-package example;
+package example.jooq;
 
-import static example.domain.Tables.OWNER;
-import static example.domain.Tables.PET;
-import example.domain.tables.records.OwnerRecord;
-import example.domain.tables.records.PetRecord;
+import example.jooq.domain.tables.records.OwnerRecord;
+import example.jooq.domain.tables.records.PetRecord;
 import io.micronaut.context.event.StartupEvent;
 import io.micronaut.core.annotation.TypeHint;
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.runtime.event.annotation.EventListener;
-import org.jooq.*;
-import org.jooq.types.*;
+import org.jooq.DSLContext;
+import org.jooq.JSON;
+import org.jooq.JSONB;
+import org.jooq.Record;
+import org.jooq.Result;
+import org.jooq.RowId;
+import org.jooq.types.DayToSecond;
+import org.jooq.types.UByte;
+import org.jooq.types.UInteger;
+import org.jooq.types.ULong;
+import org.jooq.types.UNumber;
+import org.jooq.types.UShort;
+import org.jooq.types.Unsigned;
+import org.jooq.types.YearToMonth;
+import org.jooq.types.YearToSecond;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,8 +30,17 @@ import java.math.BigInteger;
 import java.sql.Date;
 import java.sql.Time;
 import java.sql.Timestamp;
-import java.time.*;
+import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.OffsetDateTime;
+import java.time.OffsetTime;
+import java.time.ZonedDateTime;
 import java.util.UUID;
+
+import static example.jooq.domain.Tables.OWNER;
+import static example.jooq.domain.Tables.PET;
 
 @Singleton
 @TypeHint(value = {

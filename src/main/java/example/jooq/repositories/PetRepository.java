@@ -1,9 +1,9 @@
-package example.repositories;
+package example.jooq.repositories;
 
-import example.domain.NameDTO;
-import example.domain.PetWithOwner;
-import static example.domain.Tables.OWNER;
-import static example.domain.tables.Pet.PET;
+import example.jooq.domain.NameDTO;
+import example.jooq.domain.PetWithOwner;
+import static example.jooq.domain.Tables.OWNER;
+import static example.jooq.domain.tables.Pet.PET;
 import org.jooq.DSLContext;
 import org.simpleflatmapper.jdbc.DynamicJdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
