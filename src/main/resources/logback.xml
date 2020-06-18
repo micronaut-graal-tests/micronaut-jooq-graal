@@ -10,4 +10,6 @@
     <root level="info">
         <appender-ref ref="STDOUT" />
     </root>
+
+    <logger name="org.jooq.tools.LoggerListener" level="DEBUG" />
 </configuration>
