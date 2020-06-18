@@ -6,6 +6,7 @@ import java.util.UUID;
 
 @Introspected
 public class Pet {
+
     private UUID id;
     private String name;
 

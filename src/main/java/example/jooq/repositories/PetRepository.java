@@ -2,8 +2,6 @@ package example.jooq.repositories;
 
 import example.jooq.domain.NameDTO;
 import example.jooq.domain.PetWithOwner;
-import static example.jooq.domain.Tables.OWNER;
-import static example.jooq.domain.tables.Pet.PET;
 import org.jooq.DSLContext;
 import org.simpleflatmapper.jdbc.DynamicJdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
@@ -15,8 +13,12 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import static example.jooq.domain.Tables.OWNER;
+import static example.jooq.domain.tables.Pet.PET;
+
 @Singleton
 public class PetRepository {
+
     private final DSLContext context;
     private final DynamicJdbcMapper<PetWithOwner> mapper;
 

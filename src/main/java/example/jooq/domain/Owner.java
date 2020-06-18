@@ -4,6 +4,7 @@ import io.micronaut.core.annotation.Introspected;
 
 @Introspected
 public class Owner {
+
     private Integer id;
     private String name;
     private Integer age;

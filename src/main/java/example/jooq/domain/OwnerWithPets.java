@@ -6,6 +6,7 @@ import java.util.List;
 
 @Introspected
 public class OwnerWithPets extends Owner {
+
     private List<Pet> pets;
 
     public List<Pet> getPets() {
