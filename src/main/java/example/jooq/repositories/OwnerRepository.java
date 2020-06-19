@@ -35,8 +35,6 @@ public class OwnerRepository {
     public Optional<Owner> findByName(String name) throws SQLException {
         ResultQuery<?> query = context.select(OWNER.ID, OWNER.NAME, OWNER.AGE)
                 .from(OWNER)
-                .join(PET)
-                .on(PET.OWNER_ID.eq(OWNER.ID))
                 .where(OWNER.NAME.eq(name));
 
         try (ResultSet rs = query.fetchResultSet()) {
