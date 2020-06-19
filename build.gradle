@@ -2,6 +2,7 @@ plugins {
     id "com.diffplug.eclipse.apt" version "3.22.0"
     id "com.github.johnrengelman.shadow" version "6.0.0"
     id "nu.studer.jooq" version "4.2"
+    id "org.flywaydb.flyway" version "6.4.4"
     id "application"
 }
 
@@ -37,12 +38,13 @@ dependencies {
     implementation "io.micronaut:micronaut-http-server-netty"
     implementation "jakarta.persistence:jakarta.persistence-api:2.2.2"
     implementation "io.micronaut.sql:micronaut-jooq"
+    implementation "io.micronaut.flyway:micronaut-flyway"
     implementation "org.simpleflatmapper:sfm-jdbc:8.2.3"
 
     runtime "io.micronaut.sql:micronaut-jdbc-hikari"
     runtime "ch.qos.logback:logback-classic"
-    runtime "com.h2database:h2"
-    jooqRuntime "com.h2database:h2"
+    runtime "org.postgresql:postgresql"
+    jooqRuntime "org.postgresql:postgresql"
 
     testAnnotationProcessor "io.micronaut:micronaut-inject-java"
     testCompile "org.junit.jupiter:junit-jupiter-api"
@@ -87,19 +89,25 @@ tasks.withType(JavaExec) {
     }
 }
 
+flyway {
+    url = 'jdbc:postgresql://127.0.0.1:5432/devDb'
+    user = 'devDb'
+    password = 'devDb'
+    schemas = ['public']
+}
+
 jooq {
     devDb(sourceSets.main) {
         jdbc {
-            driver = 'org.h2.Driver'
-            url = 'jdbc:h2:mem:devDb;MVCC=TRUE;LOCK_TIMEOUT=10000;DB_CLOSE_ON_EXIT=FALSE;INIT=CREATE TABLE IF NOT EXISTS owner(id INT AUTO_INCREMENT, name VARCHAR(255) NOT NULL, age INT NOT NULL, CONSTRAINT owner_pk PRIMARY KEY (id))\\; CREATE TABLE IF NOT EXISTS pet (id UUID DEFAULT random_uuid() NOT NULL, name VARCHAR(255) NOT NULL, owner_id INT NOT NULL, type VARCHAR(255) NOT NULL, CONSTRAINT pet_pk PRIMARY KEY (id), CONSTRAINT pet_owner_id_fk FOREIGN KEY (owner_id) REFERENCES owner)\\;'
-            user = 'sa'
-            password = ''
+            url = 'jdbc:postgresql://127.0.0.1:5432/devDb'
+            user = 'devDb'
+            password = 'devDb'
         }
         generator {
             name = 'org.jooq.codegen.DefaultGenerator'
             database {
-                name = 'org.jooq.meta.h2.H2Database'
-                inputSchema = 'PUBLIC'
+                inputSchema = 'public'
+                excludes = 'flyway_schema_history'
             }
             target {
                 packageName = "example.jooq.domain"
@@ -118,4 +126,8 @@ jooq {
             }
         }
     }
+}
+
+tasks.named("generateDevDbJooqSchemaSource") {
+    dependsOn("flywayMigrate")
 }
