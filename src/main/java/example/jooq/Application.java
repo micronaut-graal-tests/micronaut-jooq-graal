@@ -49,19 +49,19 @@ public class Application {
         PetRecord dino = context.newRecord(PET);
         dino.setName("Dino");
         dino.setOwnerId(fred.getId());
-        dino.setType(Pet.PetType.DOG.name());
+        dino.setType(Pet.PetType.DOG);
         dino.store();
 
         PetRecord babyPuss = context.newRecord(PET);
         babyPuss.setName("Baby Puss");
         babyPuss.setOwnerId(fred.getId());
-        babyPuss.setType(Pet.PetType.CAT.name());
+        babyPuss.setType(Pet.PetType.CAT);
         babyPuss.store();
 
         PetRecord hoppy = context.newRecord(PET);
         hoppy.setName("Hoppy");
         hoppy.setOwnerId(barney.getId());
-        hoppy.setType(Pet.PetType.DOG.name());
+        hoppy.setType(Pet.PetType.DOG);
         hoppy.store();
     }
 }

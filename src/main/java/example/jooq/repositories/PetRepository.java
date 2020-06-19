@@ -3,6 +3,7 @@ package example.jooq.repositories;
 import example.jooq.domain.NameDTO;
 import example.jooq.domain.PetWithOwner;
 import org.jooq.DSLContext;
+import org.jooq.ResultQuery;
 import org.simpleflatmapper.jdbc.DynamicJdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
 
@@ -33,14 +34,15 @@ public class PetRepository {
     }
 
     public Optional<PetWithOwner> findByName(String name) throws SQLException {
-        ResultSet rs = context.select(PET.ID, PET.NAME)
+        ResultQuery<?> query = context.select(PET.ID, PET.NAME, PET.TYPE)
                 .select(OWNER.ID.as("owner_id"), OWNER.NAME.as("owner_name"), OWNER.AGE.as("owner_age"))
                 .from(PET)
                 .join(OWNER)
                 .on(PET.OWNER_ID.eq(OWNER.ID))
-                .where(PET.NAME.eq(name))
-                .fetchResultSet();
+                .where(PET.NAME.eq(name));
 
-        return mapper.stream(rs).findFirst();
+        try (ResultSet rs = query.fetchResultSet()) {
+            return mapper.stream(rs).findFirst();
+        }
     }
 }

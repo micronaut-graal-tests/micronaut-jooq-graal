@@ -107,6 +107,15 @@ jooq {
             generate {
                 jpaAnnotations = true
             }
+            database {
+                forcedTypes {
+                    forcedType {
+                        userType = 'example.jooq.domain.Pet.PetType'
+                        converter = 'example.jooq.converters.PetTypeConverter'
+                        includeExpression = 'PET\\.TYPE'
+                    }
+                }
+            }
         }
     }
 }
