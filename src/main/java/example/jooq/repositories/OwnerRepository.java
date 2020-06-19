@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.Optional;
 
 import static example.jooq.domain.Tables.OWNER;
-import static example.jooq.domain.tables.Pet.PET;
 
 @Singleton
 public class OwnerRepository {
