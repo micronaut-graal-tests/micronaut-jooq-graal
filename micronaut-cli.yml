@@ -1,5 +1,0 @@
-profile: service
-defaultPackage: example.jooq
----
-testFramework: junit
-sourceLanguage: java
