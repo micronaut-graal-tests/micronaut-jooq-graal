@@ -87,26 +87,32 @@ tasks.withType(JavaExec) {
             "micronaut.io.watch.paths": "src/main"
         )
     }
+    systemProperties(
+        "datasources.default.url": databaseUrl,
+        "datasources.default.username": databaseUser,
+        "datasources.default.password": databasePassword,
+        "datasources.default.schema": databaseSchema
+    )
 }
 
 flyway {
-    url = 'jdbc:postgresql://127.0.0.1:5432/devDb'
-    user = 'devDb'
-    password = 'devDb'
-    schemas = ['public']
+    url = databaseUrl
+    user = databaseUser
+    password = databasePassword
+    schemas = [databaseSchema]
 }
 
 jooq {
     devDb(sourceSets.main) {
         jdbc {
-            url = 'jdbc:postgresql://127.0.0.1:5432/devDb'
-            user = 'devDb'
-            password = 'devDb'
+            url = databaseUrl
+            user = databaseUser
+            password = databasePassword
         }
         generator {
             name = 'org.jooq.codegen.DefaultGenerator'
             database {
-                inputSchema = 'public'
+                inputSchema = databaseSchema
                 excludes = 'flyway_schema_history'
             }
             target {

@@ -6,10 +6,10 @@ jackson:
 ---
 datasources:
   default:
-    url: 'jdbc:postgresql://127.0.0.1:5432/devDb'
-    username: devDb
-    password: devDb
-    schema: public
+    url: ${DATABASE_URL}
+    username: ${DATABASE_USER}
+    password: ${DATABASE_PASSWORD}
+    schema: ${DATABASE_SCHEMA}
 ---
 flyway:
   datasources:
