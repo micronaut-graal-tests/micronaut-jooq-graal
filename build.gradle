@@ -20,10 +20,10 @@ configurations {
 }
 
 dependencies {
-    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
-    annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
-    testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
-    jooqRuntime platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    annotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    testAnnotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    jooqRuntime enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
 
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
