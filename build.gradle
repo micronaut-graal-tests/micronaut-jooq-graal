@@ -21,10 +21,10 @@ configurations {
 }
 
 dependencies {
-    implementation platform("io.micronaut:micronaut-bom:$micronautVersion")
-    annotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
-    testAnnotationProcessor platform("io.micronaut:micronaut-bom:$micronautVersion")
-    jooqRuntime platform("io.micronaut:micronaut-bom:$micronautVersion")
+    implementation enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    annotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    testAnnotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    jooqRuntime enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
 
     annotationProcessor "io.micronaut:micronaut-inject-java"
     annotationProcessor "io.micronaut:micronaut-graal"
@@ -37,8 +37,10 @@ dependencies {
     implementation "io.micronaut:micronaut-http-client"
     implementation "io.micronaut:micronaut-http-server-netty"
     implementation "jakarta.persistence:jakarta.persistence-api:2.2.2"
-    implementation "io.micronaut.sql:micronaut-jooq"
     implementation "io.micronaut.flyway:micronaut-flyway"
+    implementation "io.micronaut.sql:micronaut-jooq", {
+        exclude group: 'io.micronaut', module: 'micronaut-jdbc'
+    }
     implementation "org.simpleflatmapper:sfm-jdbc:8.2.3"
 
     runtime "io.micronaut.sql:micronaut-jdbc-hikari"
