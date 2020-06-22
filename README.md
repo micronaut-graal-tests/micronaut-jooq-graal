@@ -1,6 +1,8 @@
 # Micronaut JOOQ Graal #
 
-Test application for Micronaut JOOQ and GraalVM that uses H2.
+:warning: **The master branch is not used anymore.**
+
+Checkout branches for each specific database: `h2` and `postgres`.
 
 To test the application:
 
