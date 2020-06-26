@@ -9,8 +9,8 @@ version "0.1"
 group "example.jooq"
 
 repositories {
-    jcenter()
     mavenCentral()
+    jcenter()
     maven { url "https://oss.jfrog.org/oss-snapshot-local" }
 }
 
@@ -20,33 +20,38 @@ configurations {
 }
 
 dependencies {
-    implementation enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
-    annotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
-    testAnnotationProcessor enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
-    jooqRuntime enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion")
+    annotationProcessor(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    annotationProcessor("io.micronaut:micronaut-inject-java")
+    annotationProcessor("io.micronaut:micronaut-graal")
+    annotationProcessor("io.micronaut:micronaut-validation")
 
-    annotationProcessor "io.micronaut:micronaut-inject-java"
-    annotationProcessor "io.micronaut:micronaut-graal"
-    annotationProcessor "io.micronaut:micronaut-validation"
+    compileOnly(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    compileOnly("org.graalvm.nativeimage:svm")
 
-    compileOnly "org.graalvm.nativeimage:svm"
-    implementation "io.micronaut:micronaut-inject"
-    implementation "io.micronaut:micronaut-validation"
-    implementation "io.micronaut:micronaut-runtime"
-    implementation "io.micronaut:micronaut-http-client"
-    implementation "io.micronaut:micronaut-http-server-netty"
-    implementation "io.micronaut.sql:micronaut-jooq"
-    implementation "org.simpleflatmapper:sfm-jdbc:8.2.3"
+    implementation(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    implementation("io.micronaut:micronaut-inject")
+    implementation("io.micronaut:micronaut-validation")
+    implementation("io.micronaut:micronaut-runtime")
+    implementation("io.micronaut:micronaut-http-client")
+    implementation("io.micronaut:micronaut-http-server-netty")
+    implementation("io.micronaut.sql:micronaut-jooq")
+    implementation("org.simpleflatmapper:sfm-jdbc:8.2.3")
 
-    runtime "io.micronaut.sql:micronaut-jdbc-hikari"
-    runtime "ch.qos.logback:logback-classic"
-    runtime "com.h2database:h2"
-    jooqRuntime "com.h2database:h2"
+    runtimeOnly("io.micronaut.sql:micronaut-jdbc-hikari")
+    runtimeOnly("ch.qos.logback:logback-classic")
+    runtimeOnly("com.h2database:h2")
 
-    testAnnotationProcessor "io.micronaut:micronaut-inject-java"
-    testCompile "org.junit.jupiter:junit-jupiter-api"
-    testCompile "io.micronaut.test:micronaut-test-junit5"
-    testRuntime "org.junit.jupiter:junit-jupiter-engine"
+    jooqRuntime(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    jooqRuntime("com.h2database:h2")
+
+    testAnnotationProcessor(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    testAnnotationProcessor("io.micronaut:micronaut-inject-java")
+
+    testImplementation(enforcedPlatform("io.micronaut:micronaut-bom:$micronautVersion"))
+    testImplementation("org.junit.jupiter:junit-jupiter-api")
+    testImplementation("io.micronaut.test:micronaut-test-junit5")
+
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 }
 
 test.classpath += configurations.developmentOnly
@@ -56,6 +61,11 @@ mainClassName = "example.jooq.Application"
 // use JUnit 5 platform
 test {
     useJUnitPlatform()
+}
+
+java {
+    sourceCompatibility = JavaVersion.toVersion('1.8')
+    targetCompatibility = JavaVersion.toVersion('1.8')
 }
 
 tasks.withType(JavaCompile) {
