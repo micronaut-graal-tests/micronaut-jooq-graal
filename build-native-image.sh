@@ -3,4 +3,4 @@ if [ ! -z "${CI}" ]; then
 else
   ./gradlew assemble
 fi
-native-image --no-server --no-fallback --class-path build/libs/micronaut-jooq-graal-*-all.jar
+native-image --no-fallback --class-path build/libs/micronaut-jooq-graal-*-all.jar
