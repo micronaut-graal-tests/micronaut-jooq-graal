@@ -18,6 +18,16 @@ repositories {
 configurations {
     // for dependencies that are needed for development only
     developmentOnly
+
+    all {
+        resolutionStrategy {
+            eachDependency { DependencyResolveDetails details ->
+                if (details.requested.group == 'org.jooq') {
+                    details.useVersion '3.14.0'
+                }
+            }
+        }
+    }
 }
 
 dependencies {
