@@ -97,6 +97,7 @@ tasks.withType(JavaExec) {
 }
 
 jooq {
+    version = '3.14.0'
     devDb(sourceSets.main) {
         jdbc {
             driver = 'org.h2.Driver'
