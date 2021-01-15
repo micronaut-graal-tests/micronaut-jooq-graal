@@ -1,8 +1,8 @@
-package example.jooq;
+package micronaut.example;
 
-import example.jooq.domain.Pet;
-import example.jooq.domain.tables.records.OwnerRecord;
-import example.jooq.domain.tables.records.PetRecord;
+import micronaut.example.domain.Pet;
+import micronaut.example.domain.tables.records.OwnerRecord;
+import micronaut.example.domain.tables.records.PetRecord;
 import io.micronaut.context.event.StartupEvent;
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.runtime.event.annotation.EventListener;
@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 
 import javax.inject.Singleton;
 
-import static example.jooq.domain.Tables.OWNER;
-import static example.jooq.domain.Tables.PET;
+import static micronaut.example.domain.Tables.OWNER;
+import static micronaut.example.domain.Tables.PET;
 
 @Singleton
 public class Application {

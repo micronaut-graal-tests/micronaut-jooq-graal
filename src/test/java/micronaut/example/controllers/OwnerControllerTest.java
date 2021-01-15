@@ -1,6 +1,6 @@
-package example.jooq.controllers;
+package micronaut.example.controllers;
 
-import example.jooq.domain.Owner;
+import micronaut.example.domain.Owner;
 import io.micronaut.core.type.Argument;
 import io.micronaut.http.HttpRequest;
 import io.micronaut.http.client.RxHttpClient;

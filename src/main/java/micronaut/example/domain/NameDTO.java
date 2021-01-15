@@ -1,4 +1,4 @@
-package example.jooq.domain;
+package micronaut.example.domain;
 
 import io.micronaut.core.annotation.Introspected;
 
