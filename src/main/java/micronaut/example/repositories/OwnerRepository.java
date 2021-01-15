@@ -1,6 +1,6 @@
-package example.jooq.repositories;
+package micronaut.example.repositories;
 
-import example.jooq.domain.Owner;
+import micronaut.example.domain.Owner;
 import org.jooq.DSLContext;
 import org.jooq.ResultQuery;
 import org.simpleflatmapper.jdbc.DynamicJdbcMapper;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import static example.jooq.domain.Tables.OWNER;
+import static micronaut.example.domain.Tables.OWNER;
 
 @Singleton
 public class OwnerRepository {

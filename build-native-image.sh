@@ -1,6 +1,8 @@
+#!/bin/bash
+
 if [ ! -z "${CI}" ]; then
-  ./gradlew -PdatabaseUrl='jdbc:postgresql://postgreshost:5432/devDb' assemble
+  ./gradlew -PdatabaseUrl='jdbc:postgresql://postgreshost:5432/devDb' nativeImage
 else
-  ./gradlew assemble
+  ./gradlew nativeImage
 fi
-native-image --no-fallback --class-path build/libs/micronaut-jooq-graal-*-all.jar
+cp build/native-image/jooq-postgres .
