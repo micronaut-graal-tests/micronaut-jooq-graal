@@ -1,7 +1,7 @@
-package micronaut.example.repositories;
+package example.jooq.repositories;
 
-import micronaut.example.domain.NameDTO;
-import micronaut.example.domain.PetWithOwner;
+import example.jooq.domain.NameDTO;
+import example.jooq.domain.PetWithOwner;
 import org.jooq.DSLContext;
 import org.jooq.ResultQuery;
 import org.simpleflatmapper.jdbc.DynamicJdbcMapper;
@@ -13,8 +13,8 @@ import java.sql.SQLException;
 import java.util.List;
 import java.util.Optional;
 
-import static micronaut.example.domain.Tables.OWNER;
-import static micronaut.example.domain.tables.Pet.PET;
+import static example.jooq.domain.Tables.OWNER;
+import static example.jooq.domain.tables.Pet.PET;
 
 @Singleton
 public class PetRepository {

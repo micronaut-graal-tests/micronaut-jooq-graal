@@ -1,6 +1,6 @@
-package micronaut.example.converters;
+package example.jooq.converters;
 
-import micronaut.example.domain.Pet;
+import example.jooq.domain.Pet;
 import org.jooq.impl.EnumConverter;
 
 public class PetTypeConverter extends EnumConverter<String, Pet.PetType> {
