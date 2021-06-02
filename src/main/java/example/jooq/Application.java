@@ -6,11 +6,10 @@ import example.jooq.domain.tables.records.PetRecord;
 import io.micronaut.context.event.StartupEvent;
 import io.micronaut.runtime.Micronaut;
 import io.micronaut.runtime.event.annotation.EventListener;
+import jakarta.inject.Singleton;
 import org.jooq.DSLContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.inject.Singleton;
 
 import static example.jooq.domain.Tables.OWNER;
 import static example.jooq.domain.Tables.PET;
