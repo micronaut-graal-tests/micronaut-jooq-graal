@@ -1,5 +1,6 @@
 package micronaut.example.repositories;
 
+import jakarta.inject.Singleton;
 import micronaut.example.domain.NameDTO;
 import micronaut.example.domain.PetWithOwner;
 import org.jooq.DSLContext;
@@ -7,7 +8,6 @@ import org.jooq.ResultQuery;
 import org.simpleflatmapper.jdbc.DynamicJdbcMapper;
 import org.simpleflatmapper.jdbc.JdbcMapperFactory;
 
-import javax.inject.Singleton;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.List;

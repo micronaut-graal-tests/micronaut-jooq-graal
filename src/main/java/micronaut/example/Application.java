@@ -1,5 +1,6 @@
 package micronaut.example;
 
+import jakarta.inject.Singleton;
 import micronaut.example.domain.Pet;
 import micronaut.example.domain.tables.records.OwnerRecord;
 import micronaut.example.domain.tables.records.PetRecord;
@@ -9,8 +10,6 @@ import io.micronaut.runtime.event.annotation.EventListener;
 import org.jooq.DSLContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import javax.inject.Singleton;
 
 import static micronaut.example.domain.Tables.OWNER;
 import static micronaut.example.domain.Tables.PET;
