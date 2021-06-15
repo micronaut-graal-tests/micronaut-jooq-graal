@@ -1,8 +1,8 @@
 package example.jooq.domain;
 
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.core.annotation.ReflectiveAccess;
 
-@Introspected
+@ReflectiveAccess
 public class Owner {
 
     private Integer id;
