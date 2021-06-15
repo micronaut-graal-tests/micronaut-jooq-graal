@@ -103,5 +103,4 @@ tasks.named("generateDevDbJooqSchemaSource") {
 
 nativeImage {
     imageName("jooq-postgres")
-    args = ["--report-unsupported-elements-at-runtime"]
 }
