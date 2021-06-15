@@ -1,11 +1,14 @@
 package micronaut.example.domain;
 
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.core.annotation.ReflectiveAccess;
 
-@Introspected
+@ReflectiveAccess
 public class NameDTO {
 
     private String name;
+
+    public NameDTO() {
+    }
 
     public String getName() {
         return name;

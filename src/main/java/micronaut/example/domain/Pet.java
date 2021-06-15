@@ -1,10 +1,10 @@
 package micronaut.example.domain;
 
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.core.annotation.ReflectiveAccess;
 
 import java.util.UUID;
 
-@Introspected
+@ReflectiveAccess
 public class Pet {
 
     private UUID id;
@@ -35,6 +35,7 @@ public class Pet {
         this.type = type;
     }
 
+    @ReflectiveAccess
     public enum PetType {
         DOG,
         CAT

@@ -1,8 +1,8 @@
 package micronaut.example.domain;
 
-import io.micronaut.core.annotation.Introspected;
+import io.micronaut.core.annotation.ReflectiveAccess;
 
-@Introspected
+@ReflectiveAccess
 public class PetWithOwner extends Pet {
 
     private Owner owner;
