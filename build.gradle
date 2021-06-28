@@ -130,3 +130,8 @@ jooq {
         }
     }
 }
+
+nativeImage {
+    imageName('jooq-h2')
+    args = ['-H:+StaticExecutableWithDynamicLibC']
+}
