@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [ ! -z "${CI}" ]; then
-  ./gradlew -PdatabaseUrl='jdbc:postgresql://postgreshost:5432/devDb' nativeImage
+  ./gradlew -PdatabaseUrl='jdbc:postgresql://postgreshost:5432/devDb' nativeCompile
 else
-  ./gradlew nativeImage
+  ./gradlew nativeCompile
 fi
-cp build/native-image/jooq-postgres .
+cp build/native/nativeCompile/jooq-postgres .
