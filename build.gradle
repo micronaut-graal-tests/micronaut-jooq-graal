@@ -2,9 +2,11 @@ plugins {
     id "com.diffplug.eclipse.apt" version "3.22.0"
     id("com.github.johnrengelman.shadow") version "7.1.0"
     id "nu.studer.jooq" version "4.2"
-    id("io.micronaut.graalvm") version "2.0.8"
-    id "application"
+    id("io.micronaut.graalvm") version "3.0.0" apply false
+    id("application")
 }
+
+pluginManager.apply("io.micronaut.graalvm")
 
 version "0.1"
 group "example.jooq"
@@ -130,7 +132,11 @@ jooq {
     }
 }
 
-nativeImage {
-    imageName('jooq-h2')
-    args = ['-H:+StaticExecutableWithDynamicLibC']
+graalvmNative {
+    binaries {
+        main {
+            imageName.set('jooq-h2')
+            buildArgs.add('-H:+StaticExecutableWithDynamicLibC')
+        }
+    }
 }
