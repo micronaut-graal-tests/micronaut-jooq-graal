@@ -1,3 +1,4 @@
 #!/bin/bash
-./gradlew nativeImage
-cp build/native-image/jooq-h2 .
+
+./gradlew nativeCompile
+cp build/native/nativeCompile/jooq-h2 .
