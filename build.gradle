@@ -132,6 +132,7 @@ jooq {
     }
 }
 
+graalvmNative.toolchainDetection = false
 graalvmNative {
     binaries {
         main {
